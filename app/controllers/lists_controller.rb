@@ -63,7 +63,7 @@ class ListsController < ApplicationController
     
     if @list.save
       
-      rediret_to list_path(@list.id)
+      redirect_to list_path(@list.id)
     
     else
       

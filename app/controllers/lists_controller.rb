@@ -5,16 +5,21 @@ class ListsController < ApplicationController
     
   end
   
-  def create 
+  def create
     
-    list = List.new(list_params)
+    @list = List.new(list_params)
     
-    list.save
+    if @list.save
+      
+      redirect_to list_path(@list.id)
     
-    redirect_to list_path(list.id)
-    
+    else
+      
+      render :new
+      
+    end
+  
   end
-    
 
   def index
     
@@ -56,22 +61,7 @@ class ListsController < ApplicationController
     redirect_to '/lists'
     
   end
-  
-  def create
-    
-    @list = List.new(list_params)
-    
-    if @list.save
-      
-      redirect_to list_path(@list.id)
-    
-    else
-      
-      render :new
-      
-    end
-  
-end
+
 
   private
 
